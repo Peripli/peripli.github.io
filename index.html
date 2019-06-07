@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+    <title>Peripli - Service Manager</title>
+    <meta name="description" content="Peripli - Service Manager for the Open Service Broker API">
+    <meta property="og:title" content="Peripli" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://peripli.github.io/" />
+    <meta property="og:image" content="img/peripli-logo.png" />
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/aos.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Yantramanav">
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <img src="img/peripli-logo.svg" alt="Peripli Logo" class="image header-logo">
+            <span class="header-text">Peripli</span>
+            <label for="menu-toggle" class="menu-toggle-label"><img src="img/menu.svg" alt="Menu"></label>
+            <input type="checkbox" id="menu-toggle" />
+            <div class="header-links-overlay" onclick="hideOverlay()"></div>
+            <nav class="header-links">
+                <ul>
+                    <li><a href="https://github.com/Peripli/service-manager/tree/master/docs">
+                            <button type="button">
+                                <img src="img/doc.png" alt="Documentation"><span class="header-links-text">Documentation</span>
+                            </button>
+                        </a></li>
+                    <li><a href="https://github.com/Peripli/">
+                            <button type="button">
+                                <img src="img/github.png" alt="GitHub"><span class="header-links-text">GitHub</span>
+                            </button type="button">
+                        </a></li>
+                    <li><a href="https://openservicebrokerapi.slack.com/messages/C99PBB6ER">
+                            <button type="button">
+                                <img src="img/slack.png" alt="Slack"><span class="header-links-text">Slack</span>
+                            </button>
+                        </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="block">
+                <h1 class="summary">
+                    <span style="font-weight: normal; color: #8DC63F;">Central management of Open Service Broker API<br>
+                        compatible Service Brokers across Platforms</span><br>
+                    <span style="font-weight: bold; color: #53880B;">The Service Manager</span>
+                </h1>
+            </div>
+            <div class="block" style="text-align: center;">
+                <div class="benefit">
+                    <img src="img/b1.png" class="image" style="height: 300px" alt="Manage Service Brokers" data-aos="flip-left"
+                        data-aos-duration="400"><br><br>
+                    <span class="bheader">Manage Service Brokers across many Platforms</span><br><br>
+                    <span class="btext">Use the Service Manager as the central registry for service brokers. It distributes broker registrations to
+                        Cloud Foundry and Kubernetes clusters and can also serve as a standalone <a href="https://www.openservicebrokerapi.org"><abbr
+                                title="Open Service Broker API">OSBAPI</abbr></a> platform.</span>
+                </div>
+                <div class="benefit">
+                    <img src="img/b2.png" class="image" style="height: 300px" alt="Apply Policies" data-aos="flip-left"
+                        data-aos-duration="800"><br><br>
+                    <span class="bheader">Apply central Policies on Service Brokers, Service Catalogs, and Service
+                        Instances
+                    </span><br><br>
+                    <span class="btext">Manage your policies in one place. Take control of which platform should have access to which brokers,
+                        services, plans, instances, ...</span>
+                </div>
+                <div class="benefit">
+                    <img src="img/b3.png" class="image" style="height: 300px" alt="Share Service Instances" data-aos="flip-left"
+                        data-aos-duration="1200"><br><br>
+                    <span class="bheader">Share Service Instances across Platforms</span><br><br>
+                    <span class="btext">Create a service instance in a Kubernetes cluster and reuse it in Cloud Foundry or in another cluster, or in
+                        both ...</span>
+                </div>
+            </div>
+            <div class="section">
+                <div class="block testimonials">
+                    <div class="testimonial" data-aos="fade-up">
+                        <img src="img/testimonials/sap.svg" alt="SAP">
+                        <span class="tmstmt">"SAP uses Peripli to manage SAP Cloud Platform services across multiple platforms."</span><br>
+                        <span class="tmathr">- Michael Wintergerst, Senior Vice President SAP Cloud Platform, May 2019</span>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="block">
+                    <section>
+                        <h2>What is the Service Manager?</h2>
+                        <p>The Service Manager is a component that manages <a href="https://www.openservicebrokerapi.org">Open Service Broker API</a>
+                            compatible service brokers. It can enforce polices on service brokers, instances and binding and enables cross-platform
+                            capabilities such as cross-platform service instance sharing.</p>
+                        <p style="text-align: center" data-aos="zoom-in">
+                            <a href="https://www.openservicebrokerapi.org"><img src="img/osb-logo.png" class="image" style="max-height: 200px"
+                                    alt="Open Service Broker"></a><br>
+                        </p>
+                        <p>The Service Manager is intended for platform and service providers, who manage many platforms or many services. It is
+                            designed to cope with huge landscapes, many platforms, many service brokers and service instances but is slim enough to
+                            also add value to smaller setups.</p>
+                    </section>
+                    <p><br>The project aims to provide the following features:<br></p>
+                    <ul class="feature-list">
+                        <li data-aos="fade-right" data-aos-offset="30">
+                            <section>
+                                <input type="checkbox" id="feature1" class="more-or-less">
+                                <h3><label for="feature1" class="more-or-less">The Service Manager is a central registry for Service Brokers.</label>
+                                </h3>
+                                <label for="feature1" class="more-or-less"><img src="img/expand.svg" alt="expand"></label>
+                                <p>Service brokers should be registered at the Service Manager. It filters and propagates the registrations and
+                                    catalogs down to the platforms. It makes sure that end-users only see the services they are entitled to in the
+                                    marketplaces of the platforms.</p>
+                            </section>
+                        </li>
+                        <li data-aos="fade-right" data-aos-offset="30">
+                            <section>
+                                <input type="checkbox" id="feature2" class="more-or-less">
+                                <h3><label for="feature2" class="more-or-less">The Service Manager itself is an OSB platform for Service Instances and
+                                        Bindings.</label></h3>
+                                <label for="feature2" class="more-or-less"><img src="img/expand.svg" alt="expand"></label>
+                                <p>The Service Manager allows the creation and management of service instances and bindings without a platform such as
+                                    Cloud Foundry or Kubernetes. It provides a functionality like listing instances and bindings.<br>
+                                    The main difference between a service instance directly created by Service Manager and one created, for example,
+                                    through Cloud Foundry is the responsibility of the lifecycle. The platform that created and “owns” a service
+                                    instance manages things like asynchronous requests and handles error cases including orphan mitigation.</p>
+                            </section>
+                        </li>
+                        <li data-aos="fade-right" data-aos-offset="30">
+                            <section>
+                                <input type="checkbox" id="feature3" class="more-or-less">
+                                <h3><label for="feature3" class="more-or-less">The Service Manager can abstract platforms for Service Brokers.</label>
+                                </h3>
+                                <label for="feature3" class="more-or-less"><img src="img/expand.svg" alt="expand"></label>
+                                <p>Most service brokers provide services to all platforms, regardless of the type of platforms. The Open Service
+                                    Broker API provides this abstraction with one exception. It still exposes the coordinates of the application that
+                                    requests a service instance in a platform specific way. For example, for Cloud Foundry this is the organization ID
+                                    and the space ID and for Kubernetes this the cluster ID and a namespace.<br>
+                                    The Service Manager can translate these specific platform coordinates into provider specific coordinates. Service
+                                    brokers that are only relying on the provider specific coordinates are independent from the platforms and prepared
+                                    for new types of platforms in the future.</p>
+                            </section>
+                        </li>
+                        <li data-aos="fade-right" data-aos-offset="30">
+                            <section>
+                                <input type="checkbox" id="feature4" class="more-or-less">
+                                <h3><label for="feature4" class="more-or-less">The Service Manager enables runtime management and scoping of Service
+                                        Instances.</label></h3>
+                                <label for="feature4" class="more-or-less"><img src="img/expand.svg" alt="expand"></label>
+                                <p>The Service Manager provides a service broker for itself. With this service broker, applications can create an
+                                    instance and a binding of the Service Manager. The credentials of the binding can be used to work with the Service
+                                    Manager REST API mentioned above.<br>
+                                    All service instances created by such a Service Manager instance belong together. The Service Manager instance
+                                    forms the scope of these instances.<br>
+                                    This feature can, for example, be used by multi-tenant applications, which need to create service instances per
+                                    tenant.</p>
+                            </section>
+                        </li>
+                        <li data-aos="fade-right" data-aos-offset="30">
+                            <section>
+                                <input type="checkbox" id="feature5" class="more-or-less">
+                                <h3><label for="feature5" class="more-or-less">The Service Manager enables sharing of Service Instances across
+                                        platforms.</label></h3>
+                                <label for="feature5" class="more-or-less"><img src="img/expand.svg" alt="expand"></label>
+                                <p>Services instances created in one platform can be reused in another platform. For example, a database instance
+                                    created for a Cloud Foundry application can be reused in a Kubernetes cluster.<br>
+                                    The Service Manager is the central registry for all service instances from all attached platforms and enables the
+                                    instance sharing across platforms.</p>
+                            </section>
+                        </li>
+                        <li data-aos="fade-right" data-aos-offset="30">
+                            <section>
+                                <input type="checkbox" id="feature6" class="more-or-less">
+                                <h3><label for="feature6" class="more-or-less">The Service Manager provides data about Service Instances to Service
+                                        Brokers and other components.</label></h3>
+                                <label for="feature6" class="more-or-less"><img src="img/expand.svg" alt="expand"></label>
+                                <p>The Service Manager knows about all service instances because it tracks all provisioning and deprovisioning calls.
+                                    This information may be used by service brokers to, for example, do quota checks. This information might also be
+                                    necessary to find out which customers actually use a service. For example, in a case of an outage, based on this
+                                    data the right set of customers can be notified.</p>
+                            </section>
+                        </li>
+                        <li data-aos="fade-right" data-aos-offset="30">
+                            <section>
+                                <input type="checkbox" id="feature7" class="more-or-less">
+                                <h3><label for="feature7" class="more-or-less">The Service Manager facilitates network configuration for services
+                                        without a public endpoint.</label></h3>
+                                <label for="feature7" class="more-or-less"><img src="img/expand.svg" alt="expand"></label>
+                                <p>To enable access from applications to services without a public endpoint, network configuration has to be adapted
+                                    on the fly and/or a tunnel between the application and the service has to be established. The Service Manager
+                                    provides the necessary extension points for adding plugins that handle the network configuration.</p>
+                            </section>
+                        </li>
+                        <li data-aos="fade-right" data-aos-offset="30">
+                            <section>
+                                <input type="checkbox" id="feature8" class="more-or-less">
+                                <h3><label for="feature8" class="more-or-less">The Service Manager is extensible with plugins.</label></h3>
+                                <label for="feature8" class="more-or-less"><img src="img/expand.svg" alt="expand"></label>
+                                <p>All platform setups are different and there is no simple one-size-fits-all solution. The Service Manager can be
+                                    extended with plugins to adapt and add more service and broker policies. This allows to implement handling of
+                                    special instance types and scenarios in the future.</p>
+                            </section>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section">
+                <div class="block">
+                    <section>
+                        <h2>What is the Peripli Project?</h2>
+                        <p>
+                            The Peripli project addresses the management of many <a href="https://www.openservicebrokerapi.org"><abbr
+                                    title="Open Service Broker API">OSBAPI</abbr></a> compliant service brokers across multiple platforms.</p>
+                        <p>
+                            The Service Manager is the central broker registry and the proxy for all OSBAPI calls from all platforms to all service
+                            brokers. It can be extended by plugins, which can apply policies to all OSBAPI related entities like service brokers,
+                            service offerings, plans, service instances and service binding and can manipulate or veto OSBAPI requests and responses.
+                        </p>
+                        <p>The Service Manager is not tight to any specific platform. Other Peripli components, called Service Broker Proxies, handle
+                            platform specific APIs. The Peripli project currently provides Service Broker Proxies for Kubernetes and Cloud Foundry.
+                            Because of the open APIs, Service Broker Proxies can also be implemented for other (proprietary) platforms.<br>
+                            Additionally, the Peripli project provides a CLI tool to talk to the Service Manager.<br></p>
+                        <p style="padding: 20px 10%;">
+                            <img src="img/perilpi-overview.png" class="image" alt="Overview" data-aos="fade-left">
+                        </p>
+                        <p>
+                            The Service Manager is also a complete OSBAPI platform itself that doesn’t need <span
+                                style="font-weight: bold">Kubernetes</span> or <span style="font-weight: bold">Cloud Foundry</span> to create and
+                            manage service instances and service bindings. Credentials provided by a service binding can be used by other applications
+                            which are not hosted on a platform or – in a loosely coupled scenario – can be injected into a Kubernetes cluster as a
+                            secret or to Cloud Foundry as a user-provided service instance.</p>
+                    </section>
+                </div>
+            </div>
+            <div class="section">
+                <div class="block">
+                    <section>
+                        <h2>Project Status</h2>
+                        <p>
+                            The Service Manager is still under development. Some of the planed features are not finished or haven't been started,
+                            yet.<br>
+                            However, the core of the Service Manager is production ready and is already deployed in big cloud infrastructures.</p>
+                    </section>
+                </div>
+            </div>
+            <div class="section">
+                <div class="block">
+                    <section>
+                        <h2>Additional Resources</h2>
+                        <ul>
+                            <li>The Service Manager API specification can be found <a
+                                    href="https://github.com/Peripli/specification/blob/sm-ops/api.md">here</a>.
+                                It’s not fully implemented, yet.
+                            </li>
+                            <li>Service Manager CLI documentation is located <a
+                                    href="https://github.com/Peripli/service-manager-cli/tree/master/docs">here</a>.
+                            </li>
+                            <li>Execution of a flow similar to the one described in the <a
+                                    href="https://github.com/Peripli/service-manager/blob/master/docs/usage/walkthrough.md">walkthrough</a>
+                                can be found here.</li>
+                            <li>Service Manager Introduction as part of the keynote @ CF Summit Europe 2018 can be found <a
+                                    href="https://www.youtube.com/watch?v=FG2bIv34P10">here</a>.
+                            </li>
+                            <li>Service Manager Session @ CF Summit Europe 2018 can be found <a
+                                    href="https://www.youtube.com/watch?v=SGfwVPx-kmE">here</a>.
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <div class="section">
+                <div class="block">
+                    <section>
+                        <h2>Connect to the Peripli Community</h2>
+                        <div class="connect">
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/Peripli/"><img src="img/github.png" alt="GitHub">Fork on Github</a>
+                                </li>
+                                <li>
+                                    <a href="https://openservicebrokerapi.slack.com/messages/C99PBB6ER"><img src="img/slack.png" alt="Slack">Talk on
+                                        Slack</a>
+                                </li>
+                                <li>
+                                    <a href="https://groups.google.com/forum/#!forum/service-manager-wg"><img src="img/mail.png" alt="Email">Discuss
+                                        per email</a>
+                                </li>
+                                <li>
+                                    <a href="https://docs.google.com/document/d/1vDoVN86aELWbZWKbD8ADxGSG0IbvbJccl3IPx5XdUmE"><img src="img/phone.png"
+                                            alt="Phone">Join our bi-weekly calls</a>
+                                </li>
+                            </ul>
+                            <br><br>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+    </footer>
+    <script src="js/aos.js"></script>
+    <script>
+        function hideOverlay() {
+            document.getElementById("menu-toggle").checked = false;
+        }
+        AOS.init({
+            disable: 'phone'
+        });
+    </script>
+</body>
+
+</html>
