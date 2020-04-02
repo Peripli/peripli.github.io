@@ -37,5 +37,13 @@ entries:
     urls:
     - https://github.com/Peripli/service-broker-proxy-k8s/releases/download/v0.8.0/service-broker-proxy-k8s-v0.8.0.tgz
     version: v0.8.0
-generated: "2020-03-13T13:01:44.123999463Z"
-
+  - apiVersion: v1
+    appVersion: v0.8.1
+    created: "2020-04-02T15:59:28.653345577Z"
+    description: A Helm chart for Service Broker Proxy for Kubernetes
+    digest: 545e8a8afe4ffa38a391fe0d51c902150e0fad4222894fa2c5d303196c5e0bae
+    name: service-broker-proxy-k8s
+    urls:
+    - https://github.com/Peripli/service-broker-proxy-k8s/releases/download/v0.8.1/service-broker-proxy-k8s-v0.8.1.tgz
+    version: v0.8.1
+generated: "2020-04-02T15:59:28.652628593Z"
