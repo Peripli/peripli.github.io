@@ -118,7 +118,6 @@ entries:
     urls:
     - https://github.com/Peripli/service-broker-proxy-k8s/releases/download/v0.8.10/service-broker-proxy-k8s-v0.8.10.tgz
     version: v0.8.10
-generated: "2020-11-09T07:30:54.266357141Z"
   - apiVersion: v1
     appVersion: v0.8.12
     created: "2021-02-03T07:50:15.038257237Z"
