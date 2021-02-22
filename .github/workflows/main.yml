@@ -57,3 +57,4 @@ jobs:
             --set sm.user=user \
             --set sm.password=pass4test \
             --debug
+          kubectl get pods -n service-broker-proxy | grep Running
