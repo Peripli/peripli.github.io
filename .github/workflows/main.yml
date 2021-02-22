@@ -61,4 +61,4 @@ jobs:
 
       - name: Check pods
         id: checkPods
-        run: echo $(kubectl get pods -n service-broker-proxy | grep Running)
+        run: kubectl get pods -n service-broker-proxy
