@@ -26,7 +26,7 @@ jobs:
         with:
           name: "kubernetes"
           wait: "900s"
-      - name: Create cluster using KinD
+      - name: Create K8S cluster using KinD
         run: |
           kubectl cluster-info
 
@@ -38,7 +38,7 @@ jobs:
         id: readFile
         run: |
           echo ::set-output name=relVer::$(grep version index.yaml | tail -1 | sed 's/.*v//g')
-          echo ::set-output name=verUrl::$( grep ${{env.relVer}}.tgz index.yaml | tail -1 | sed 's/.* - //g')
+          echo ::set-output name=verUrl::$(grep ${{env.relVer}}.tgz index.yaml | tail -1 | sed 's/.* - //g')
                 
       - name: Download sb-proxy-k8s helm chart
         id: downloadChart
@@ -55,13 +55,17 @@ jobs:
             --namespace service-broker-proxy \
             --version v${{ steps.readFile.outputs.relVer }} \
             --set config.sm.url=http://test.com \
-            --set sm.user=user \
-            --set sm.password=pass4test \
+            --set sm.user=admin \
+            --set sm.password=admin \
             --debug
+            echo ::set-output name=sbpPod::$(kubectl -n service-broker-proxy get pods)
+            echo $(kubectl get pod -n service-broker-proxy ${{env.sbpPod}} -o yaml)
 
       - uses: nick-invision/retry@v2
         with:
           timeout_seconds: 5
-          max_attempts: 10
+          max_attempts: 100
           retry_on: error
-          command: kubectl -n service-broker-proxy get pods -o jsonpath='{range .items[*]}{.status.containerStatuses[*].ready.true}{.metadata.name}{ "\n"}{end}'         
+          command: kubectl -n service-broker-proxy get pods | grep Running # -o jsonpath='{range .items[*]}{.status.containerStatuses[*].ready.true}{.metadata.name}{ "\n"}{end}'
+          on_retry_command: kubectl get pods -n service-broker-proxy
+      
