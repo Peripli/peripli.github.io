@@ -47,7 +47,7 @@ jobs:
           curl -L ${{ steps.readFile.outputs.verUrl }} --output sb-proxy-k8s-v${{ steps.readFile.outputs.relVer }}.tgz
 
       - name: Validate the sb-proxy-k8s helm chart 
-        id: downloadChart
+        id: validateChart
         run: |
           kubectl create namespace service-broker-proxy
           helm install sb-proxy sb-proxy-k8s-v${{ steps.readFile.outputs.relVer }}.tgz \
