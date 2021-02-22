@@ -1,5 +1,8 @@
 name: SB Proxy K8S Helm Chart
 on:
+  push:
+    branches:
+      - rel-validation
   pull_request:
     branches:
       - main
