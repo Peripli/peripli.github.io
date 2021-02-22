@@ -59,6 +59,9 @@ jobs:
             --set sm.password=pass4test \
             --debug
 
-      - name: Check pods
-        id: checkPods
-        run: kubectl get pods -n service-broker-proxy
+      uses: nick-invision/retry@v2
+      with:
+        timeout_seconds: 5
+        max_attempts: 10
+        retry_on: error
+        command: kubectl get pods -n service-broker-proxy | grep Ready         
