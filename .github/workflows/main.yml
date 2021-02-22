@@ -27,7 +27,8 @@ jobs:
           name: "kubernetes"
           wait: "900s"
       - name: Create cluster using KinD
-        run: kubectl cluster-info
+        run: |
+          kubectl cluster-info
 
       - name: Install helm
         id: installHelm
@@ -60,4 +61,4 @@ jobs:
 
       - name: Check pods
         id: checkPods
-        run: kubectl get pods -n service-broker-proxy | grep Running
+        run: echo $(kubectl get pods -n service-broker-proxy | grep Running)
