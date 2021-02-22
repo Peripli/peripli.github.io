@@ -66,6 +66,5 @@ jobs:
           max_attempts: 50
           retry_on: error
           command: kubectl -n service-broker-proxy get pods | grep Running # -o jsonpath='{range .items[*]}{.status.containerStatuses[*].ready.true}{.metadata.name}{ "\n"}{end}'
-          on_retry_command: kubectl get pods -n service-broker-proxy
-      - name: Check service-broker-proxy pod status
+          on_retry_command: kubectl get pods -n service-broker-proxy   
       
