@@ -1,9 +1,9 @@
 name: SB Proxy K8S Helm Chart
+
 on:
-  push:
-    branches:
-      - rel-validation
   pull_request:
+    paths:
+      - 'index.yaml'
     branches:
       - main
 
@@ -25,16 +25,15 @@ jobs:
       - uses: engineerd/setup-kind@v0.5.0
         with:
           name: "kubernetes"
-          wait: "900s"
-      - name: Create K8S cluster using KinD
-        run: |
-          kubectl cluster-info
+          wait: "600s"
+      - name: Create K8S cluster
+        run: kubectl cluster-info
 
       - name: Install helm
         id: installHelm
         run: curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
       
-      - name: Get the sb-proxy-k8s release version and helm chart url
+      - name: Get sb-proxy-k8s version and helm chart url from index.yaml
         id: readFile
         run: |
           echo ::set-output name=relVer::$(grep version index.yaml | tail -1 | sed 's/.*v//g')
@@ -58,13 +57,12 @@ jobs:
             --set sm.user=admin \
             --set sm.password=admin \
             --debug
-            echo ::set-output name=sbpPod::$(kubectl -n service-broker-proxy get pods)
 
       - uses: nick-invision/retry@v2
+        id: retry
         with:
           timeout_seconds: 3
-          max_attempts: 50
+          max_attempts: 30
           retry_on: error
-          command: kubectl -n service-broker-proxy get pods | grep Running # -o jsonpath='{range .items[*]}{.status.containerStatuses[*].ready.true}{.metadata.name}{ "\n"}{end}'
-          on_retry_command: kubectl get pods -n service-broker-proxy   
-      
+          command: kubectl -n service-broker-proxy get pods | grep Running
+          on_retry_command: kubectl get pods -n service-broker-proxy
