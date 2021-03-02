@@ -1,0 +1,68 @@
+name: SB Proxy K8S Helm Chart
+
+on:
+  pull_request:
+    paths:
+      - 'index.yaml'
+    branches:
+      - main
+
+jobs:
+
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '1.13.5'
+           
+      - uses: azure/setup-kubectl@v1
+        id: install
+      
+      - uses: actions/checkout@master
+      - uses: engineerd/setup-kind@v0.5.0
+        with:
+          name: "kubernetes"
+          wait: "600s"
+      - name: Create K8S cluster
+        run: kubectl cluster-info
+
+      - name: Install helm
+        id: installHelm
+        run: curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+      
+      - name: Get sb-proxy-k8s version and helm chart url from index.yaml
+        id: readFile
+        run: |
+          echo ::set-output name=relVer::$(grep version index.yaml | tail -1 | sed 's/.*v//g')
+          echo ::set-output name=verUrl::$(grep ${{env.relVer}}.tgz index.yaml | tail -1 | sed 's/.* - //g')
+                
+      - name: Download sb-proxy-k8s helm chart
+        id: downloadChart
+        run: |
+          echo version=${{ steps.readFile.outputs.relVer }}
+          echo url=${{ steps.readFile.outputs.verUrl }} 
+          curl -L ${{ steps.readFile.outputs.verUrl }} --output sb-proxy-k8s-v${{ steps.readFile.outputs.relVer }}.tgz
+
+      - name: Validate the sb-proxy-k8s helm chart 
+        id: validateChart
+        run: |
+          kubectl create namespace service-broker-proxy
+          helm install sb-proxy sb-proxy-k8s-v${{ steps.readFile.outputs.relVer }}.tgz \
+            --namespace service-broker-proxy \
+            --version v${{ steps.readFile.outputs.relVer }} \
+            --set config.sm.url=http://test.com \
+            --set sm.user=admin \
+            --set sm.password=admin \
+            --debug
+
+      - uses: nick-invision/retry@v2
+        id: retry
+        with:
+          timeout_seconds: 3
+          max_attempts: 30
+          retry_on: error
+          command: kubectl -n service-broker-proxy get pods | grep Running
+          on_retry_command: kubectl get pods -n service-broker-proxy
