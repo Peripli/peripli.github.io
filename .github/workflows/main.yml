@@ -1,7 +1,7 @@
 name: SB Proxy K8S Helm Chart
 
 on:
-  pull_request:
+  push:
     paths:
       - 'index.yaml'
     branches:
